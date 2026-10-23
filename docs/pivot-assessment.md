@@ -1,4 +1,4 @@
-# From organization knowledge health to a society access companion
+# Society access companion — product and integration scope
 
 ## The new product
 
@@ -14,38 +14,7 @@ is available, and regular-visitor rules are wanted. Therefore the immediate
 deliverable is a local companion with an integration boundary, rather than a
 claim that the vendor app is connected.
 
-## What the existing repository actually contains
-
-The original suite was run before building this project: **29 tests passed**.
-There is already a Git baseline, despite the older onboarding notes saying
-initialization is still needed. Existing working-tree changes in AGENTS.md,
-docs/16-product-vision-unified.md, and uv.lock were left as they were.
-
-Ganas has an abstract graph interface, a working in-memory backend, a FalkorDB
-skeleton, typed evidence/freshness logic, coverage and counterfactual risk,
-centrality, successor ranking, explanations, action planning, organizational
-diagnostics, team health, and an MCP surface. It runs deterministic reasoning
-over seeded software-organization fixtures.
-
-The canonical vision also describes artifact ingestion and durable side
-discussions, neither fully implemented. There was no society household model,
-guard application, visitor lifecycle, Alexa skill, OAuth account linking, or
-vendor visitor-management connector in the existing build.
-
-## What carries forward
-
-The useful design principles are explicit authority, provenance, freshness,
-separation between an interface and its storage backend, and deterministic gates
-when information is missing. This project implements those principles with an
-audit log, scoped actor permissions, expiring approvals, and a confirmed workflow.
-
-The graph engines themselves do not need to be dependencies of entry approval.
-PageRank, operator coverage, and simulated employee absence answer different
-questions. Reinterpreting an employee's verified operational capability as a
-resident's permission to admit a visitor would change the meaning of the
-canonical graph. No existing core component is modified or imported here.
-
-## Changes required for the pivot
+## Application model
 
 The primary entities become society, household, enrolled resident, on-duty guard,
 visitor, arrival request, decision, trusted-visitor rule, and audit event. The

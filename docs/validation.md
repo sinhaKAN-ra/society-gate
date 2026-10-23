@@ -4,7 +4,6 @@ Verified 2026-10-20 with Python 3.13.3 and official MCP Python SDK 1.30.0.
 
 - New application: **29 tests passed**, including six tests of the actual SDK's
   Streamable HTTP ASGI application. No MCP tests were skipped in this run.
-- Parent Ganas application: **29 tests passed** independently.
 - A separate live-socket check started both local servers and used the official
   MCP client. It negotiated **2025-11-25**, discovered all five tools, and
   completed pending → approved → checked in through the HTTP interfaces.
@@ -20,7 +19,7 @@ Verified 2026-10-20 with Python 3.13.3 and official MCP Python SDK 1.30.0.
   observed rule approval, revoked the rule, and observed the unused approval
   become denied. Eleven screenshots were captured as separate review evidence.
 - Mobile layout, a physical Echo, and a production vendor connection remain
-  outside the verified scope. Both 29-test suites passed again on 2026-10-21.
+  outside the verified scope. The 29 application tests passed again on 2026-10-21.
 
 Reproduce with the commands in [MCP setup](mcp-setup.md). The live check writes
 its credential-free report to `.local/mcp-proof.json`. Local servers used for

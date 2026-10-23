@@ -120,16 +120,8 @@ session boundaries, replay handling, verified-ID rules, revocation, HTTP
 authorization, and the Alexa relay boundary. It does not test a physical Echo,
 Amazon certification, or a society vendor integration.
 
-The original project remains independently testable from the Ganas root:
+The code in this standalone project is MIT licensed. To export a source archive
+without credentials or local state, run `python3 scripts/package_source.py`.
 
-```bash
-.venv/bin/python -m pytest tests/ -q
-```
-
-The code in this folder is MIT licensed; the license does not apply to the
-parent Ganas project. To export a standalone source archive without credentials
-or local state, run `python3 scripts/package_source.py`.
-
-Read [the pivot assessment](docs/pivot-assessment.md) for what the original
-project contributes and [the architecture decision](docs/adr-001-companion.md)
-for why this is a separate application.
+Read [the product assessment](docs/pivot-assessment.md) for the integration scope
+and [the architecture decision](docs/adr-001-companion.md) for the application design.

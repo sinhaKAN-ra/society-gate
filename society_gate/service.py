@@ -1,4 +1,4 @@
-"""Transactional visitor approvals. No dependency on the Ganas graph engines."""
+"""Transactional resident-controlled visitor approvals."""
 from __future__ import annotations
 
 from contextlib import closing, contextmanager
