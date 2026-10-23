@@ -1,0 +1,19 @@
+{
+  "interactionModel": {
+    "languageModel": {
+      "invocationName": "society gate",
+      "intents": [
+        {"name": "PendingVisitorsIntent", "slots": [], "samples": ["who is at the gate", "visitors", "check my visitors", "who is waiting"]},
+        {"name": "ApproveVisitorIntent", "slots": [], "samples": ["approve visitor", "allow this visitor", "let this visitor enter"]},
+        {"name": "DenyVisitorIntent", "slots": [], "samples": ["deny visitor", "reject this visitor", "do not allow this visitor"]},
+        {"name": "AMAZON.YesIntent", "samples": []},
+        {"name": "AMAZON.NoIntent", "samples": []},
+        {"name": "AMAZON.HelpIntent", "samples": []},
+        {"name": "AMAZON.StopIntent", "samples": []},
+        {"name": "AMAZON.CancelIntent", "samples": []},
+        {"name": "AMAZON.FallbackIntent", "samples": []}
+      ],
+      "types": []
+    }
+  }
+}

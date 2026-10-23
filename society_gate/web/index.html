@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Society Gate — visitor companion</title>
+  <link rel="stylesheet" href="/style.css"><script src="/mcp-client.js" defer></script><script src="/app.js" defer></script>
+</head>
+<body>
+  <aside class="sidebar">
+    <a class="brand" href="/" aria-label="Society Gate home"><span class="brand-icon">G</span> society gate<span class="brand-dot">●</span></a>
+    <p class="eyebrow">THE NEIGHBOURHOOD COMPANION</p>
+    <div class="community"><span class="building">▥</span><div><strong>Demo Society</strong><small>Companion workspace · local demo</small></div></div>
+    <nav aria-label="Workspace"><a href="#workspace">↗ <span>Visitor desk</span></a><a href="#voice-section">◉ <span>Alexa conversation</span></a><a href="#rules-section">⌘ <span>Trusted visitors</span></a><a href="#activity-section">≡ <span>Activity log</span></a></nav>
+    <div class="sidebar-bottom"><span class="connection-dot"></span> LOCAL COMPANION<p>Existing society app not connected.<br>Vendor access is required for sync.</p></div>
+  </aside>
+  <main>
+    <header><span>YOUR HOME, CONNECTED TO YOUR GATE</span><span class="pill">Prototype · no physical gate control</span></header>
+    <section class="hero"><div><p class="eyebrow">A SMALLER DISTANCE BETWEEN HOME AND HELLO</p><h1>At your gate.<br><em>In your control.</em></h1><p>Let your guard know who’s welcome, from your phone or an Alexa conversation.</p></div><div class="hero-art" aria-hidden="true"><div class="arch"><span class="arch-window"></span><span class="door"></span></div><span class="hello">hello, neighbour ↗</span><span class="plant">✳</span></div></section>
+    <section class="login card" aria-labelledby="login-title"><div><p class="eyebrow">YOUR WORKSPACE</p><h2 id="login-title">Connect a demo account</h2><p>Paste a token from <code>.local/credentials.json</code>. Open a second tab for the other role.</p></div><form id="login-form"><label for="token">Account access token</label><div class="input-row"><input id="token" type="password" autocomplete="off" placeholder="Guard, resident, or mock integration token" required><button type="submit">Connect ↗</button></div><small id="identity">Not connected</small><button id="disconnect" class="text-button" type="button" hidden>Disconnect</button></form></section>
+    <div id="notice" role="status" aria-live="polite" hidden></div>
+    <div id="workspace" hidden>
+      <section class="stats" aria-label="Visitor overview"><div><span>Waiting at the gate</span><strong id="pending-count">0</strong><small>Resident decision needed</small></div><div><span>Ready to enter</span><strong id="approved-count">0</strong><small>Current approvals only</small></div><div><span>Inside the society</span><strong id="inside-count">0</strong><small>Checked in by a guard</small></div></section>
+      <section class="work-grid">
+        <div class="card" id="arrival-section"><p class="eyebrow">01 / ARRIVAL</p><h2 id="arrival-heading">Register a visitor</h2><p id="arrival-description">Send an entry request to the resident.</p>
+          <form id="arrival-form"><label for="visitor">Visitor name</label><input id="visitor" maxlength="100" required placeholder="e.g. Rahul Sharma"><div class="form-grid"><div><label for="unit">Visiting flat</label><select id="unit"><option>A-101</option><option>B-202</option></select></div><div><label for="purpose">Purpose</label><select id="purpose"><option>Personal visit</option><option>Delivery</option><option>Housekeeping</option><option>Maintenance</option></select></div></div><div id="provider-fields" hidden><label for="visitor-ref">Vendor visitor ID</label><input id="visitor-ref" maxlength="100" placeholder="e.g. vendor:regular-001"><label class="checkbox-label"><input type="checkbox" id="verified"> Mock vendor has verified this identity</label><p class="hint">Test adapter only. No vendor connection is active.</p></div><button class="wide" type="submit">Send visitor request ↗</button></form>
+        </div>
+        <div class="card voice-card" id="voice-section"><div class="section-line"><p class="eyebrow">02 / AT HOME</p><span class="pill">Conversation simulator</span></div><div class="alexa-orb" aria-hidden="true"><span></span></div><h2>“Alexa, open society gate.”</h2><p>Hear who’s waiting. Choose approve or deny.<br>Confirm before the guard gets a decision.</p><div id="voice-controls"><button data-intent="LaunchRequest">Open skill</button><button data-intent="PendingVisitorsIntent" class="secondary">Visitors</button><button data-intent="ApproveVisitorIntent" class="secondary">Approve visitor</button><button data-intent="DenyVisitorIntent" class="secondary">Deny visitor</button><button data-intent="AMAZON.YesIntent" class="secondary">Yes, confirm</button><button data-intent="AMAZON.NoIntent" class="secondary">No, cancel</button><button data-intent="AMAZON.StopIntent" class="text-button">Stop</button></div><div id="transcript" class="transcript" aria-live="polite">Connect a resident account to try the conversation. This simulator does not use your microphone or an Echo.</div></div>
+      </section>
+      <section class="card mcp-section" id="mcp-section" hidden>
+        <div class="section-line"><div><p class="eyebrow">ALEXA+ EXPERIENCE · LOCAL SIMULATION</p><h2>A conversation backed by real tools.</h2></div><span id="mcp-status" class="pill">MCP disconnected</span></div>
+        <p>This panel is an actual MCP client. It discovers and calls resident-scoped tools over Streamable HTTP. A live Alexa+ device is not connected.</p>
+        <div class="mcp-connect"><div><label for="mcp-url">Local MCP endpoint</label><input id="mcp-url" value="http://127.0.0.1:8092/mcp" type="url"></div><button id="mcp-connect" type="button">Connect & discover tools ↗</button></div>
+        <div class="mcp-actions"><button id="mcp-visitors" type="button" disabled>Who is at the gate?</button><button id="mcp-rules" type="button" class="secondary" disabled>My trusted visitors</button><button id="mcp-receipt" type="button" class="secondary" disabled>Explain this decision</button></div>
+        <label for="mcp-visitor">Choose the exact arrival</label><select id="mcp-visitor" disabled><option value="">Check visitors first</option></select>
+        <div class="mcp-actions"><button id="mcp-approve" type="button" class="secondary" disabled>Prepare approval</button><button id="mcp-deny" type="button" class="secondary" disabled>Prepare denial</button></div>
+        <div id="mcp-answer" class="transcript" aria-live="polite">Start the MCP server, then connect to see the negotiated protocol and tools.</div>
+        <div class="mcp-actions"><button id="mcp-confirm" type="button" disabled>Yes, confirm this exact visitor</button><button id="mcp-cancel" type="button" class="secondary" disabled>No, cancel</button></div>
+        <details><summary>Protocol activity · initialize → tools/list → tools/call</summary><pre id="mcp-trace">No protocol messages yet.</pre></details>
+      </section>
+      <section class="card queue-section"><div class="section-line"><div><p class="eyebrow">LIVE VISITOR DESK</p><h2 id="queue-title">Visitor requests</h2></div><button id="refresh" class="secondary">Refresh ↻</button></div><p class="hint">Updates every 3 seconds. Approval lasts 2 minutes; unanswered requests expire after 5 minutes.</p><div id="visits" class="visit-list"></div></section>
+      <section class="card" id="rules-section"><div class="section-line"><div><p class="eyebrow">FAMILIAR FACES, CLEAR BOUNDARIES</p><h2>Trusted visitor rules</h2></div><span class="pill">Up to 24 hours</span></div><p>Allow a regular visitor for your flat using a verified vendor ID. Names alone never trigger a rule. Revoking a rule also withdraws its unused approvals.</p><form id="rule-form"><div class="rule-inputs"><div><label for="rule-label">Label</label><input id="rule-label" required maxlength="100" placeholder="Morning housekeeper"></div><div><label for="rule-ref">Verified vendor visitor ID</label><input id="rule-ref" required maxlength="100" placeholder="vendor:regular-001"></div><div><label for="rule-hours">Valid for</label><select id="rule-hours"><option value="1">1 hour</option><option value="4">4 hours</option><option value="12">12 hours</option><option value="24">24 hours</option></select></div><button type="submit">Add rule ↗</button></div></form><div id="rules" class="rule-list"></div></section>
+      <section class="card" id="activity-section"><p class="eyebrow">THE RECORD BEHIND EACH DECISION</p><h2>Activity log</h2><div id="activity" class="activity-list"></div></section>
+    </div>
+    <footer>Society Gate <span>Built for a human decision at every new arrival.</span></footer>
+  </main>
+</body>
+</html>
